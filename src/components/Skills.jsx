@@ -54,19 +54,19 @@ const Skills = () => {
       id: 7,
       src: git,
       title: "Git",
-      style: "shadow-pink-400",
+      style: "shadow-orange-700",
     },
     {
       id: 8,
       src: bootstrap,
       title: "Bootstrap",
-      style: "shadow-white",
+      style: "shadow-purple-700",
     },
     {
       id: 9,
       src: mysql,
       title: "MySQL",
-      style: "shadow-white",
+      style: "shadow-blue-500",
     },
     {
       id: 10,
