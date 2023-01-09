@@ -7,6 +7,8 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Communicate from "./components/Communicate";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
 
@@ -19,6 +21,7 @@ function App() {
       <Awards />
       <Contact />
       <Communicate />
+      <ToastContainer/>
     </div>
   );
 }

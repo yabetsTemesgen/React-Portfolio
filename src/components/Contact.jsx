@@ -1,5 +1,7 @@
 import React from "react";
-import { FaGithub, FaLinkedin, FaInstagram, FaTelegram } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaTelegram } from "react-icons/fa";
+import firebase from "./FirebaseConfig";
+import { toast } from "react-toastify";
 const Contact = () => {
   const links = [
     {
@@ -10,7 +12,8 @@ const Contact = () => {
         </>
       ),
       href: "https://www.instagram.com/yab_tem/",
-      style: "rounded-tr-md",
+      style:
+        " duration-300 hover: rounded hover:bg-gradient-to-tr from-yellow-400 via-pink-400 to-fuchsia-700",
     },
     {
       id: 2,
@@ -20,6 +23,7 @@ const Contact = () => {
         </>
       ),
       href: "https://www.linkedin.com/in/yabets-temesgen-21384b214/",
+      style: " duration-300 hover:bg-gradient-to-tr from-blue-400 to-blue-700",
     },
     {
       id: 3,
@@ -29,8 +33,45 @@ const Contact = () => {
         </>
       ),
       href: "https://t.me/yab_25",
+      style:
+        " duration-300 hover: rounded hover:bg-gradient-to-tr from-blue-400 to-blue-700",
     },
   ];
+
+  const contactForm = firebase.database().ref("contactMessages");
+  const contactFormSubmit = () => {
+    var name = getElementVal("nameField");
+    var email = getElementVal("emailField");
+    var msg = getElementVal("msgContent");
+    saveMessages(name, email, msg);
+    if (name === "" || email === "" || msg === "") {
+      toast.error("Please fill out all the fields", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      if (saveMessages) {
+        toast.success("Your message is sent successfully!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        toast.error("Error occured while sending message", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    }
+  };
+
+  const saveMessages = (name, email, msg) => {
+    const newContactFormRef = contactForm.push();
+    newContactFormRef.set({
+      name: name,
+      email: email,
+      msg: msg,
+    });
+  };
+  const getElementVal = (id) => {
+    return document.getElementById(id).value;
+  };
 
   return (
     <div
@@ -50,27 +91,34 @@ const Contact = () => {
             action="https://getform.io/f/c45bdea6-8ca1-41a3-a00e-35d287025926"
             method="POST"
             className=" flex flex-col w-full md:w-1/2"
+            onSubmit={(e) => e.preventDefault()}
           >
             <input
               type="text"
               name="name"
+              id="nameField"
               placeholder="Enter your name"
               className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
             />
             <input
-              type="text"
+              type="email"
               name="email"
+              id="emailField"
               placeholder="Enter your email"
               className="my-4 p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
             />
             <textarea
               name="message"
               placeholder="Enter your message"
+              id="msgContent"
               rows="10"
               className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
             ></textarea>
 
-            <button className="text-white bg-gradient-to-b from-cyan-500 to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300">
+            <button
+              onClick={contactFormSubmit}
+              className="text-white bg-gradient-to-b from-cyan-500 to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300"
+            >
               send
             </button>
           </form>
@@ -80,12 +128,11 @@ const Contact = () => {
       <h3 className="text-center mb-1">Copyright © 2023 YT</h3>
       <div className="">
         <ul className="flex justify-center">
-          {links.map(({ id, child, href, download }) => (
+          {links.map(({ id, child, href, style }) => (
             <li key={id} className="px-2 ">
               <a
                 href={href}
-                className=""
-                download={download}
+                className={"flex" + style}
                 target="_blank"
                 rel="noreferrer"
               >

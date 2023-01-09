@@ -1,6 +1,7 @@
 import React from "react";
 import HeroImage from "../assets/heroImage.gif";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+// import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { HiArrowLongRight } from "react-icons/hi2";
 import { Link } from "react-scroll";
 
 const Home = () => {
@@ -15,20 +16,12 @@ const Home = () => {
             style={{ paddingBottom: 15 }}
             className="heading text-white text-4xl"
           >
-            Hi There!{" "}
-            <span className="wave" role="img" aria-labelledby="wave">
-              👋🏻
-            </span>
+            Hi There! <span className="animate-waving-hand">👋🏻</span>
           </h1>
           <h2 className="lg:text-6xl sm:text-7xl font-bold text-white">
             I'm Yabets Temesgen
           </h2>
-          <p className="text-white">Full stack developer</p>
-          <p className="text-gray-500 py-4 max-w-md hidden">
-            I have experience in building and desgining full stack web
-            applications. Currently, I am working on web application using
-            technologies like React, Tailwind, Next JS and RestAPIs.
-          </p>
+          <p className="text-white mb-3 ml-2">Full stack developer</p>
 
           <div>
             <Link
@@ -37,9 +30,9 @@ const Home = () => {
               duration={500}
               className="group text-white w-fit px-6 py-3 flex items-center rounded-md bg-gradient-to-r from-slate-800 to-blue-700 cursor-pointer"
             >
-              works
+              Portfolio
               <span className="group-hover:rotate-90 duration-300">
-                <MdOutlineKeyboardArrowRight size={25} className="ml-1" />
+                <HiArrowLongRight size={25} className="ml-1" />
               </span>
             </Link>
           </div>
