@@ -42,7 +42,7 @@ const Communicate = () => {
     },
 
     {
-      id: 6,
+      id: 5,
       child: (
         <>
           Resume <FaFilePdf size={30} />

@@ -1,6 +1,37 @@
 import React from "react";
-
+import { FaGithub, FaLinkedin, FaInstagram, FaTelegram } from "react-icons/fa";
 const Contact = () => {
+  const links = [
+    {
+      id: 1,
+      child: (
+        <>
+          <FaInstagram size={20} />
+        </>
+      ),
+      href: "https://www.instagram.com/yab_tem/",
+      style: "rounded-tr-md",
+    },
+    {
+      id: 2,
+      child: (
+        <>
+          <FaLinkedin size={20} />
+        </>
+      ),
+      href: "https://www.linkedin.com/in/yabets-temesgen-21384b214/",
+    },
+    {
+      id: 3,
+      child: (
+        <>
+          <FaTelegram size={20} />
+        </>
+      ),
+      href: "https://t.me/yab_25",
+    },
+  ];
+
   return (
     <div
       name="contact"
@@ -46,7 +77,24 @@ const Contact = () => {
         </div>
       </div>
       <p className="text-center">Developed by Yabets Temesgen</p>
-      <h3 className="text-center">Copyright © 2023 YT</h3>
+      <h3 className="text-center mb-1">Copyright © 2023 YT</h3>
+      <div className="">
+        <ul className="flex justify-center">
+          {links.map(({ id, child, href, download }) => (
+            <li key={id} className="px-2 ">
+              <a
+                href={href}
+                className=""
+                download={download}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {child}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
